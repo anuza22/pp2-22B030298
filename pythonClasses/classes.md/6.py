@@ -1,7 +1,3 @@
-# a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
-# a = list(filter((lambda x: all(x%i!=0 for i in range(2,x))), a))
-# print(a)
-def fillt(listik):
-    print(list(filter(lambda x : all( x % i !=0  
-                                     for i in range(2,x)),listik)))  
-fillt([1, 3, 5, 8, 15, 7])
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+a = list(filter((lambda x: all(x%i!=0 for i in range(2,x))), a))
+print(a)

@@ -2,7 +2,7 @@
 
 import os, string
 
-os.chdir(r'C:\Users\Lenovo\OneDrive\Рабочий стол\Alph_txt' )
+os.chdir(r'C:\Users\Lenovo\pp2\w3schools 1\TSIS6' )
 
 alphabet = string.ascii_uppercase
 

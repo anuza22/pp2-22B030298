@@ -9,7 +9,7 @@ import re
 
 file = open('row.txt', 'r', encoding="UTF8")
 
-result = re.findall('.*[A-Z]+[a-z]+.*', file.read())
+result = re.findall('[A-Z]+[a-z]+', file.read())
 
 print(result)
 
