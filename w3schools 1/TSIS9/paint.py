@@ -1,4 +1,5 @@
 import pygame
+import math
 
 pygame.init()
 running = True
@@ -134,12 +135,31 @@ while running:
                     ry = abs(prev[1]-cur[1])/2
                     r = (rx + ry)/2
                     pygame.draw.circle(screen, color_now, (x, y), r, width)
-                if shape == 'rectangle':
-                    x = min(prev[0], cur[0])
+                elif shape == 'rectangle' or shape == 'square':
+                    x = min(prev[0], cur[0])  #minimal coordinate
                     y = min(prev[1], cur[1])
-                    lx = abs(prev[0]-cur[0])
+                    lx = abs(prev[0]-cur[0])  # length
                     ly = abs(prev[1]-cur[1])
+                    if shape == 'square':
+                        lx = (lx+ly)/2  # length and width are same for square
+                        ly = lx
                     pygame.draw.rect(screen, color_now, (x, y, lx, ly), width)
+                elif shape == 'right_triangle' or shape == 'equilateral_triangle':
+                    x = min(prev[0], cur[0])  #minimal coordinate
+                    y = min(prev[1], cur[1])
+                    lx = abs(prev[0]-cur[0])  # length of pseudo rectangle
+                    ly = abs(prev[1]-cur[1])
+                    if shape == 'right_triangle':
+                        ly = math.sqrt(lx**2 - (lx/2)**2)  # all sides are equal
+                    points = (x, y+ly), (x+lx/2, y), (x+lx, y+ly)  # draw by three points
+                    pygame.draw.polygon(screen, color_now, points, width)
+                elif shape == 'rhombus':
+                    x = min(prev[0], cur[0])  # minimal coordinates
+                    y = min(prev[1], cur[1])
+                    lx = abs(prev[0]-cur[0])  #sizes
+                    ly = abs(prev[1]-cur[1])
+                    points = (x+lx/2, y), (x+lx, y+ly/2), (x+lx/2, y+ly), (x, y+ly/2)
+                    pygame.draw.polygon(screen, color_now, points, width)  # draw by points
     pygame.display.flip()
     clock.tick(fps)
 
